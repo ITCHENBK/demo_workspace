@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <springProperty scope="context" name="FILEAPPENDER_OUT_PATTERN"
+                    source="logging.fileappender.pattern.out"
+                    defaultValue="%level %date [%thread] %logger{10} [%file:%line] %msg%n"/>
+    <springProperty scope="context" name="FILEAPPENDER_FILENAME_PATTERN"
+                    source="logging.fileappender.pattern.filename"
+                    defaultValue=".%d{yyyy-MM-dd}.%i"/>
+    <springProperty scope="context" name="FILEAPPENDER_MAXHISTORY"
+                    source="logging.fileappender.maxhistory"
+                    defaultValue="30"/>
+    <springProperty scope="context" name="FILEAPPENDER_MAXFILESIZE"
+                    source="logging.fileappender.maxfilesize"
+                    defaultValue="50MB"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender"> <!-- -->
+        <encoder>　
+            <pattern>${FILEAPPENDER_OUT_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>E:/logs/mylog.txt</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>E:/logs/mylog-%d{yyyy-MM-dd_HH-mm}.%i.log</fileNamePattern>
+            <maxHistory>${FILEAPPENDER_MAXHISTORY}</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${FILEAPPENDER_MAXFILESIZE}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${FILEAPPENDER_OUT_PATTERN}</pattern>
+        </encoder>
+    </appender>
+    <springProfile name="default">
+        <logger name="com.chenbk.cloud" level="DEBUG"/>
+        <root level="INFO">
+            <appender-ref ref="STDOUT" />
+        </root>
+    </springProfile>
+    <springProfile name="test,dev">
+        <logger name="com.chenbk.cloud" level="DEBUG"/>
+        <root level="INFO">
+            <appender-ref ref="FILE" />
+        </root>
+    </springProfile>
+    <springProfile name="prod">
+        <logger name="com.chenbk.cloud" level="INFO"/>
+        <root level="INFO">
+            <appender-ref ref="FILE" />
+        </root>
+    </springProfile>
+</configuration>

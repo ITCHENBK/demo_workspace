@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: eureka-client
+  datasource:
+    url: jdbc:mysql://localhost:3306/test
+    username: root
+    password: a168888
+    driver-class-name: com.mysql.jdbc.Driver
+  output:
+    ansi:
+      enabled: detect
+server:
+  port: 3001
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1001/eureka/
+logging:
+  fileappender:
+    pattern:
+      out: '%date %level [%thread] %logger{10} [%file:%line] %msg%n'
+      filename: '.%d{yyyy-MM-dd}.%i'
+    maxhistory: 30
+    maxfilesize: 50MB
