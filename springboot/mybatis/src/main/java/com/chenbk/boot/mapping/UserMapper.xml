@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenbk.boot.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.chenbk.boot.model.User">
+        <id column="id" property="id" jdbcType="INTEGER"></id>
+        <result column="name" property="name" jdbcType="VARCHAR"></result>
+        <result column="age" property="age" jdbcType="INTEGER"></result>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,age
+    </sql>
+    <select id="getAllUser" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_user
+    </select>
+
+    <select id="getUser" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_user
+        where id = #{id}
+    </select>
+    <insert id="postUser" parameterType="com.chenbk.boot.model.User">
+        insert into t_user(id,name,age) value(#{id},#{name},#{age})
+    </insert>
+    <update id="putUser" parameterType="com.chenbk.boot.model.User">
+        update t_user
+        set name = #{name} , age = #{age}
+        where id = #{id}
+    </update>
+    <delete id="delUser" parameterType="java.lang.Integer">
+        delete from t_user where id = #{id}
+    </delete>
+</mapper>
