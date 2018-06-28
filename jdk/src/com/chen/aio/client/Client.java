@@ -1,8 +1,9 @@
-package com.chen.aio;
+package com.chen.aio.client;
 
 /**
  * Created by Kang on 2018/5/30.
  */
+
 import java.util.Scanner;
 public class Client {
     private static String DEFAULT_HOST = "127.0.0.1";

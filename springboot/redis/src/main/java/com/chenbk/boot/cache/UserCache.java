@@ -2,6 +2,9 @@ package com.chenbk.boot.cache;
 
 import com.chenbk.boot.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
@@ -43,4 +46,19 @@ public class UserCache {
         redisTemplate.delete(id+"");
     }
 
+
+    /**
+     * 清理缓存
+     */
+    public void clearCache() {
+        String result = redisTemplate.execute(new RedisCallback<String>() {
+            public String doInRedis(RedisConnection connection) throws DataAccessException {
+                connection.flushDb();
+                return "success";
+            }
+        });
+        if ("success".equals(result)) {
+
+        }
+    }
 }

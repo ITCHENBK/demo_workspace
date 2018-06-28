@@ -1,7 +1,6 @@
 package com.chenbk.boot.model;
 
 
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -14,7 +13,7 @@ import java.io.Serializable;
 public class User implements Serializable {
 
 
-    @ApiModelProperty(value = "用户ID",required = true,notes = "用户ID")
+    @ApiModelProperty(value = "系统状态码",required = true,notes = "用户ID")
     private Integer id;
 
     @ApiModelProperty(value = "用户名称",required = true,notes = "用户名称")

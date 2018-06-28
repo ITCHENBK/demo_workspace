@@ -1,15 +1,14 @@
-package com.chenbk.boot;
+package com.chenbk.cloud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cloud.config.server.EnableConfigServer;
 
 /**
- * Created by Kang on 2018/5/11.
+ * Created by Kang on 2018/6/28.
  */
-
+@EnableConfigServer
 @SpringBootApplication
-@EnableCaching
 public class Application {
 
     public static void main(String ... args){

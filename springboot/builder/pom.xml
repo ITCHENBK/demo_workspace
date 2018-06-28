@@ -8,6 +8,19 @@
         <module>../eureka-client</module>
         <module>../eureka-consumer</module>
         <module>../zuul-gateway</module>
+        <module>../swagger-ui</module>
+        <module>../test-case</module>
+        <module>../multidatasource</module>
+        <module>../jpa</module>
+        <module>../mybatis</module>
+        <module>../redis</module>
+        <module>../async-request</module>
+        <module>../scheduled</module>
+        <module>../async-task</module>
+        <module>../logback</module>
+        <module>../websocket</module>
+        <module>../config-client</module>
+        <module>../config-server</module>
     </modules>
 
     <parent>

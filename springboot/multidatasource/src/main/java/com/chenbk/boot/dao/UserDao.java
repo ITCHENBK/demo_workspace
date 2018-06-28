@@ -27,17 +27,17 @@ public class UserDao {
         return jdbcTemplate.query(sql, new UserRowMapper());
     }
 
-    public User getUser(@PathVariable("id") Integer id) {
+    public User getUser(Integer id) {
         String sql="select * from t_user where id = ?";
         return jdbcTemplate.queryForObject(sql,new Object[]{id},new UserRowMapper());
     }
 
-    public void postUser(@RequestBody User user) {
+    public void postUser(User user) {
         String sql="insert into t_user(id,name,age) values(?,?,?)";
         jdbcTemplate.update(sql,user.getId(),user.getName(),user.getAge());
     }
 
-    public void putUser(@PathVariable("id") Integer id, @RequestBody User user) {
+    public void putUser(Integer id, User user) {
         String sql="update t_user set name = ?,age = ? where id = ?";
         jdbcTemplate.update(sql,user.getName(),user.getAge(),user.getId());
     }

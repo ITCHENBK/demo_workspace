@@ -1,6 +1,6 @@
 spring:
   redis:
-    host: 
+    host: www.chenbk.club
     port: 6379
     database: 0
     pool:
@@ -8,4 +8,9 @@ spring:
       min-idle: 0
       max-idle: 8
       max-wait: -1
-    password:
+    password: lUjWdM91
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: a168888
+    url: jdbc:mysql://localhost:3306/test

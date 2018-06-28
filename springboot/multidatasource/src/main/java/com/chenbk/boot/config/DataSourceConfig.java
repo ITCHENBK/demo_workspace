@@ -17,8 +17,8 @@ public class DataSourceConfig {
     @Autowired
     private DataSourceProp dataSourceProp;
 
-    @Bean(name="monitorDataSource")
-    public DataSource monitorDataSource(){
+    @Bean
+    public DataSource multiDataSource(){
         return new MultiDataSource(dataSourceProp);
     }
 }
