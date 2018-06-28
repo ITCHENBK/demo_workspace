@@ -5,6 +5,6 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/ITCHENBK/demo_workspace/tree/master/config/
+          uri: https://github.com/ITCHENBK/config.git
 server:
   port: 1201
