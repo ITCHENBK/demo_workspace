@@ -37,7 +37,7 @@ import java.util.function.Supplier;
  */
 public final class Objects {
     private Objects() {
-        throw new AssertionError("No java.util.Objects instances for you!");
+        throw new AssertionError("No java.util.Object3 instances for you!");
     }
 
     /**
@@ -111,7 +111,7 @@ public final class Objects {
      *
      * <blockquote><pre>
      * &#064;Override public int hashCode() {
-     *     return Objects.hash(x, y, z);
+     *     return Object3.hash(x, y, z);
      * }
      * </pre></blockquote>
      *
@@ -189,7 +189,7 @@ public final class Objects {
      * and constructors, as demonstrated below:
      * <blockquote><pre>
      * public Foo(Bar bar) {
-     *     this.bar = Objects.requireNonNull(bar);
+     *     this.bar = Object3.requireNonNull(bar);
      * }
      * </pre></blockquote>
      *
@@ -211,8 +211,8 @@ public final class Objects {
      * constructors with multiple parameters, as demonstrated below:
      * <blockquote><pre>
      * public Foo(Bar bar, Baz baz) {
-     *     this.bar = Objects.requireNonNull(bar, "bar must not be null");
-     *     this.baz = Objects.requireNonNull(baz, "baz must not be null");
+     *     this.bar = Object3.requireNonNull(bar, "bar must not be null");
+     *     this.baz = Object3.requireNonNull(baz, "baz must not be null");
      * }
      * </pre></blockquote>
      *
@@ -234,7 +234,7 @@ public final class Objects {
      * returns {@code false}.
      *
      * @apiNote This method exists to be used as a
-     * {@link java.util.function.Predicate}, {@code filter(Objects::isNull)}
+     * {@link java.util.function.Predicate}, {@code filter(Object3::isNull)}
      *
      * @param obj a reference to be checked against {@code null}
      * @return {@code true} if the provided reference is {@code null} otherwise
@@ -252,7 +252,7 @@ public final class Objects {
      * otherwise returns {@code false}.
      *
      * @apiNote This method exists to be used as a
-     * {@link java.util.function.Predicate}, {@code filter(Objects::nonNull)}
+     * {@link java.util.function.Predicate}, {@code filter(Object3::nonNull)}
      *
      * @param obj a reference to be checked against {@code null}
      * @return {@code true} if the provided reference is non-{@code null}

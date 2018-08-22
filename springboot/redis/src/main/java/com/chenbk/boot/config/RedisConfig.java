@@ -1,5 +1,6 @@
 package com.chenbk.boot.config;
 
+import com.chenbk.boot.lock.StandAloneLock;
 import com.chenbk.boot.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
@@ -8,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,6 +45,11 @@ public class RedisConfig {
         redisCacheManager.setExpires(expires);
 
         return redisCacheManager;
+    }
+
+    @Bean
+    public StandAloneLock standAloneLock(StringRedisTemplate redisTemplate){
+        return new StandAloneLock(redisTemplate);
     }
 
 }
