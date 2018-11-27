@@ -1,7 +1,7 @@
 package com.chenbk.utils.aio;
 
-import com.chen.aio.client.Client;
-import com.chen.aio.server.Server;
+import com.chenbk.utils.aio.client.Client;
+import com.chenbk.utils.aio.server.Server;
 
 import java.util.Scanner;
 

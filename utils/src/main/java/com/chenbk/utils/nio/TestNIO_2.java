@@ -92,7 +92,7 @@ public class TestNIO_2 {
 		
 		System.out.println(Files.size(path2));
 		
-//		Files.move(path1, path2, StandardCopyOption.ATOMIC_MOVE);
+		Files.move(path1, path2, StandardCopyOption.ATOMIC_MOVE);
 	}
 	
 	@Test

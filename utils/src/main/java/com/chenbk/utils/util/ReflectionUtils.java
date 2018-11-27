@@ -28,7 +28,7 @@ public class ReflectionUtils {
         Class<?> searchClass = clazz;
         while (searchClass != null) {
             try {
-                Field field = searchClass.getField(name);
+                Field field = searchClass.getDeclaredField(name);
                 return field;
             } catch (NoSuchFieldException e) {
 
@@ -53,6 +53,22 @@ public class ReflectionUtils {
     }
 
     /**
+     * 给字段设置值
+     * @param name
+     * @param target
+     * @param value
+     */
+    public static void setField(String name, Object target, Object value) {
+        try {
+            Field field=findField(target.getClass(),name);
+            makeAccessible(field);
+            field.set(target, value);
+        } catch (IllegalAccessException e) {
+            throw new IllegalStateException("Could not access field: " + e.getMessage());
+        }
+    }
+
+    /**
      * 获取字段的值
      * @param field
      * @param target
@@ -67,6 +83,22 @@ public class ReflectionUtils {
 
     }
 
+    /**
+     * 获取字段的值
+     * @param name
+     * @param target
+     * @return
+     */
+    public static Object getField(String name, Object target) {
+        try {
+            Field field=findField(target.getClass(),name);
+            makeAccessible(field);
+            return field.get(target);
+        } catch (IllegalAccessException e) {
+            throw new IllegalStateException("Could not access field: " + e.getMessage());
+        }
+
+    }
 
     /**
      * 获取方法
@@ -81,7 +113,7 @@ public class ReflectionUtils {
         Class<?> searchClass = clazz;
         while (searchClass != null) {
             try {
-                Method method = searchClass.getMethod(name, paramTypes);
+                Method method = searchClass.getDeclaredMethod(name, paramTypes);
                 return method;
             } catch (NoSuchMethodException e) {
 

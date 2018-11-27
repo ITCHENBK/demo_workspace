@@ -11,16 +11,6 @@ import java.lang.reflect.Method;
  */
 public class CglibProxyInstance {
 
-    static class TestMethodInterceptor implements MethodInterceptor{
-        @Override
-        public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
-            System.out.println("beford method");
-            Object object=methodProxy.invokeSuper(o,objects);
-            System.out.println("after method");
-            return object;
-        }
-    }
-
     public static Object instance(Class clazz){
         Enhancer enhancer=new Enhancer();
         enhancer.setCallback(new TestMethodInterceptor());

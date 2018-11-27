@@ -22,4 +22,21 @@ public class IdUtil {
     public static String createUUID(){
         return UUID.randomUUID().toString();
     }
+
+
+    /**
+     * 内容长度 4个字节
+     *
+     * @param num
+     * @return
+     */
+    public byte[] contentLength(int num) {
+        byte[] targets = new byte[4];
+        targets[3] = (byte) (num & 0xff);// 最低位
+        targets[2] = (byte) ((num >> 8) & 0xff);// 次低位
+        targets[1] = (byte) ((num >> 16) & 0xff);// 次高位
+        targets[0] = (byte) (num >>> 24);// 最高位,无符号右移。
+        return targets;
+    }
+
 }

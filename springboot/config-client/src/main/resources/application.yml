@@ -1,10 +1,3 @@
-spring:
-  application:
-    name: config-server
-  cloud:
-    config:
-      server:
-        git:
-          uri: https://github.com/ITCHENBK/demo_workspace/tree/master/config/
-server:
-  port: 1201
+management:
+  security:
+    enabled: false

@@ -6,5 +6,10 @@ spring:
       server:
         git:
           uri: https://github.com/ITCHENBK/config.git
+          repos:
+            eureka:
+              pattern: eureka_*
+              uri: https://github.com/ITCHENBK/config.git
+              searchPaths: config,{application}
 server:
   port: 1201

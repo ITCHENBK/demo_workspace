@@ -153,19 +153,38 @@ public class TestChannel {
     //使用直接缓冲区完成文件的复制(内存映射文件)
     @Test
     public void test2() throws IOException{//2127-1902-1777
+        int size=1024*1024*1024;
         long start = System.currentTimeMillis();
 
-        FileChannel inChannel = FileChannel.open(Paths.get("d:/1.mkv"), StandardOpenOption.READ);
-        FileChannel outChannel = FileChannel.open(Paths.get("d:/2.mkv"), StandardOpenOption.WRITE, StandardOpenOption.READ, StandardOpenOption.CREATE);
+        FileChannel inChannel = FileChannel.open(Paths.get("G:\\test\\kk"), StandardOpenOption.READ);
+        FileChannel outChannel = FileChannel.open(Paths.get("G:\\test\\kk2"), StandardOpenOption.WRITE, StandardOpenOption.READ, StandardOpenOption.CREATE);
+
 
         //内存映射文件
-        MappedByteBuffer inMappedBuf = inChannel.map(MapMode.READ_ONLY, 0, inChannel.size());
-        MappedByteBuffer outMappedBuf = outChannel.map(MapMode.READ_WRITE, 0, inChannel.size());
+        MappedByteBuffer inMappedBuf;
+        MappedByteBuffer outMappedBuf;
+        byte[] dst = new byte[size];
+        for(long i=0;;i++){
+            if(size*(i+1)>=inChannel.size()){
+                inMappedBuf = inChannel.map(MapMode.READ_ONLY, i*size, inChannel.size()-(i*size));
+                outMappedBuf = outChannel.map(MapMode.READ_WRITE, i*size,inChannel.size()-(i*size));
+//                inMappedBuf.get(dst,0,(int)(inChannel.size()-(i*size)));
+//                outMappedBuf.put(dst,0,(int)(inChannel.size()-(i*size)));
+                outMappedBuf.put(inMappedBuf);
+                //outMappedBuf.force();
+                break;
+            }
+            inMappedBuf = inChannel.map(MapMode.READ_ONLY, i*size, size);
+            outMappedBuf = outChannel.map(MapMode.READ_WRITE, i*size, size);
+//            inMappedBuf.get(dst);
+//            outMappedBuf.put(dst);
+            outMappedBuf.put(inMappedBuf);
+
+            //outMappedBuf.force();
+        }
+
 
         //直接对缓冲区进行数据的读写操作
-        byte[] dst = new byte[inMappedBuf.limit()];
-        inMappedBuf.get(dst);
-        outMappedBuf.put(dst);
 
         inChannel.close();
         outChannel.close();
