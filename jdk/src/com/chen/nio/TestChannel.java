@@ -156,8 +156,8 @@ public class TestChannel {
     public void test2() throws IOException{//2127-1902-1777
         long start = System.currentTimeMillis();
 
-        FileChannel inChannel = FileChannel.open(Paths.get("d:/1.mkv"), StandardOpenOption.READ);
-        FileChannel outChannel = FileChannel.open(Paths.get("d:/2.mkv"), StandardOpenOption.WRITE, StandardOpenOption.READ, StandardOpenOption.CREATE);
+        FileChannel inChannel = FileChannel.open(Paths.get("F:/movie/k1.mp4"), StandardOpenOption.READ);
+        FileChannel outChannel = FileChannel.open(Paths.get("F:/movie/k2.mp4"), StandardOpenOption.WRITE, StandardOpenOption.READ, StandardOpenOption.CREATE);
 
         //内存映射文件
         MappedByteBuffer inMappedBuf = inChannel.map(MapMode.READ_ONLY, 0, inChannel.size());
@@ -186,14 +186,14 @@ public class TestChannel {
         FileChannel inChannel = null;
         FileChannel outChannel = null;
         try {
-            fis = new FileInputStream("d:/1.mkv");
-            fos = new FileOutputStream("d:/2.mkv");
+            fis = new FileInputStream("F:/movie/k1.mp4");
+            fos = new FileOutputStream("F:/movie/k2.mp4");
 
             inChannel = fis.getChannel();
             outChannel = fos.getChannel();
 
             //②分配指定大小的缓冲区
-            ByteBuffer buf = ByteBuffer.allocate(1024);
+            ByteBuffer buf = ByteBuffer.allocate(4096*2);
 
             //③将通道中的数据存入缓冲区中
             while(inChannel.read(buf) != -1){
